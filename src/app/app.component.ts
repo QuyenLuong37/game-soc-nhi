@@ -19,6 +19,7 @@ export class AppComponent {
   score = 0;
   choiceSelected: any;
   voice: HTMLAudioElement | any;
+  thinkingSound: HTMLAudioElement | any;
   constructor(private http: HttpClient) {
     
   }
@@ -28,14 +29,20 @@ export class AppComponent {
   }
 
   replay() {
+    this.thinkingSound.pause();
+    this.thinkingSound.currentTime = 0;
     this.voice.currentTime = 0;
     this.voice.play();
   }
 
   answer(choice: any, question: any) {
     this.choiceSelected = choice;
-    this.voice.pause();
+    this.voice?.pause();
     this.voice.currentTime = 0;
+    if (this.thinkingSound) {
+      this.thinkingSound?.pause();
+      this.thinkingSound.currentTime = 0;
+    }
     const nextQuestions = this.listOfQuestionsOrigin.filter((i, index) => index === this.questionSelectedIndex + 1);
     if (choice?.id === question.correct.idChoice) {
       this.score += 20;
@@ -56,6 +63,8 @@ export class AppComponent {
     } else {
       timer(3000).subscribe(() => {
         this.isCompleteAnswer = true;
+        const completeSound = new Audio('../assets/audio/audio-finish.mp3');
+        completeSound.play();
       })
     }
   }
@@ -111,6 +120,10 @@ export class AppComponent {
       this.voice.play().then((r: any) => {
         console.log('result: ', r);
         
+      });
+      this.voice.addEventListener("ended", () => {
+        this.thinkingSound = new Audio('../assets/audio/audiothinking.mp3');
+        this.thinkingSound.play();
       });
     })
   }
