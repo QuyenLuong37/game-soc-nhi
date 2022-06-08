@@ -56,34 +56,34 @@ export const data = [
     //         idChoice: 6
     //     }
     // },
-    {
-        id: 3,
-        name: 'Để biến thành tàng hình, Nobita có thể mượn bảo bối nào của Doraemon nhỉ?',
-        image: '/assets/img/baoboicuadoraemon_tb_4.jpg',
-        choices: [
-            {
-                id: 9,
-                name: 'Lọ thuốc mắt không ai thấy'
-            },
-            {
-                id: 10,
-                name: 'Lọ thuốc mắt không thấy ai'
-            },
-            {
-                id: 11,
-                name: 'Khăn tàng hình'
-            },
-            {
-                id: 12,
-                name: 'A và C là đáp án đúng'
-            },
-        ],
-        color: colors[Math.floor(Math.random()*colors.length)],
-        correct: {
-            idQuestion: 3,
-            idChoice: 11
-        }
-    },
+    // {
+    //     id: 3,
+    //     name: 'Để biến thành tàng hình, Nobita có thể mượn bảo bối nào của Doraemon nhỉ?',
+    //     image: '/assets/img/baoboicuadoraemon_tb_4.jpg',
+    //     choices: [
+    //         {
+    //             id: 9,
+    //             name: 'Lọ thuốc mắt không ai thấy'
+    //         },
+    //         {
+    //             id: 10,
+    //             name: 'Lọ thuốc mắt không thấy ai'
+    //         },
+    //         {
+    //             id: 11,
+    //             name: 'Khăn tàng hình'
+    //         },
+    //         {
+    //             id: 12,
+    //             name: 'A và C là đáp án đúng'
+    //         },
+    //     ],
+    //     color: colors[Math.floor(Math.random()*colors.length)],
+    //     correct: {
+    //         idQuestion: 3,
+    //         idChoice: 11
+    //     }
+    // },
     {
         id: 4,
         name: 'Ai là người mượn bảo bối của Doraemon nhiều nhất, Sóc út đố bạn?',
