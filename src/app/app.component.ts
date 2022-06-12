@@ -20,6 +20,7 @@ export class AppComponent {
   choiceSelected: any;
   voice: HTMLAudioElement | any;
   thinkingSound: HTMLAudioElement | any;
+  isCorrectAnswer: 0 | 1 | 2 = 0;
   constructor(private http: HttpClient) {
     
   }
@@ -45,15 +46,18 @@ export class AppComponent {
     }
     const nextQuestions = this.listOfQuestionsOrigin.filter((i, index) => index === this.questionSelectedIndex + 1);
     if (choice?.id === question.correct.idChoice) {
+      this.isCorrectAnswer = 1;
       this.score += 20;
       const correctAudio = new Audio('../assets/audio/correct-answer-audio.mp3');
       correctAudio.play();
     } else {
+      this.isCorrectAnswer = 2;
       const correctAudio = new Audio('../assets/audio/wrong-answer-audio.mp3');
       correctAudio.play();
     }
     if (nextQuestions.length) {
       timer(3000).subscribe(() => {
+        this.isCorrectAnswer = 0;
         this.choiceSelected = null;
         this.questionSelectedIndex = this.questionSelectedIndex + 1;
          this.listOfQuestions = nextQuestions;
@@ -62,6 +66,7 @@ export class AppComponent {
       })
     } else {
       timer(3000).subscribe(() => {
+        this.isCorrectAnswer = 0;
         this.isCompleteAnswer = true;
         const completeSound = new Audio('../assets/audio/audio-finish.mp3');
         completeSound.play();

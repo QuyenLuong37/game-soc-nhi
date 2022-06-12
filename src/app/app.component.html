@@ -15,9 +15,19 @@
       "
     >
   
-      <div class="absolute  top-32 left-20 animate__animated animate__swing animate__infinite">
-        <div class="text-4xl font-bold text-white" style="text-shadow: 1px 1px 6px green;">Điểm</div>
-        <div class="text-5xl font-bold text-white text-center" style="text-shadow: 1px 1px 6px green;">{{score}}</div>
+      <div class="absolute  top-32 left-20">
+        <ng-container *ngIf="!isCorrectAnswer; else other">
+          <div class="transition bg-[url('/assets/img/ngoi-sao.svg')] bg-cover bg-no-repeat w-[83px] h-20"></div>
+        </ng-container>
+        <ng-template #other>
+          <ng-container *ngIf="isCorrectAnswer === 1; else fail">
+            <div class="animate__animated animate__infinite animate__tada bg-[url('/assets/img/ngoi-sao-cuoi.svg')] bg-cover bg-no-repeat w-[83px] h-20"></div>
+          </ng-container>
+          <ng-template #fail>
+            <div class="animate__animated animate__infinite animate__pulse bg-[url('/assets/img/ngoi-sao-buon.svg')] bg-cover bg-no-repeat w-[83px] h-20"></div>
+          </ng-template>
+        </ng-template>
+        <div class="text-5xl font-bold text-white text-center mt-2" style="text-shadow: 1px 1px 6px green;">{{score}}</div>
       </div>
       
       <div class="cursor-pointer absolute group  top-1/2 left-[14px] transition transform -translate-y-1/2 ">
